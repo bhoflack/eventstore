@@ -17,8 +17,11 @@
 package com.melexis.esb;
 
 import com.google.common.collect.ImmutableMap;
+import org.apache.solr.client.solrj.beans.Field;
 import org.joda.time.DateTime;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 /**
@@ -28,7 +31,6 @@ public class Event implements Comparable {
     private DateTime timestamp;
     private String source;
     private Map<String,String> attributes;
-
 
     private Event(DateTime ts, String source, Map<String, String> attributes) {
         this.timestamp = ts;   // DateTime is immutable
@@ -50,6 +52,18 @@ public class Event implements Comparable {
                         "may not contain reserved keys (starting with '_') like : " + key);
             }
         }
+    }
+
+    public void setTimestamp(DateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setAttributes(Map<String, String> attributes) {
+        this.attributes = attributes;
     }
 
     public DateTime getTimestamp() {
